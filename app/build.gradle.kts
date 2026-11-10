@@ -18,7 +18,8 @@ android {
 
     buildTypes {
         release {
-            isMinifyEnabled = false
+            isMinifyEnabled = true
+            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
             // Debug-ключ, чтобы release-APK можно было сразу установить.
             signingConfig = signingConfigs.getByName("debug")
         }
@@ -28,8 +29,9 @@ android {
         targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions { jvmTarget = "17" }
-    androidResources { noCompress += "caffemodel" }
-    packaging { jniLibs { useLegacyPackaging = true } }
+    packaging {
+        jniLibs { useLegacyPackaging = true }
+    }
 }
 
 dependencies {
